@@ -18,7 +18,7 @@ Set up logging in a pico
 
     getLogs = function() {
       logs = pci:get_logs(ent:logging_eci)
-               .map(function(l){
+               .map(function(k,l){
 	              lt = l{"log_text"};
 		      l.delete(["log_text"])
 		       .put(["log_items"], lt.split(re/\n/))
