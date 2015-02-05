@@ -27,8 +27,8 @@ Set up logging in a pico
     select when cloudos logging_reset
     pre {
       leci  = ent:logging_eci.isnull()
-           || not pci:get_logging(meta:eci())) => pci:set_logging(meta:eci())
-	                                        | ent:logging_eci;
+           || not pci:get_logging(meta:eci()) => pci:set_logging(meta:eci())
+	                                       | ent:logging_eci;
        				    
     }
     noop();
