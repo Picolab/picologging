@@ -22,7 +22,6 @@ Set up logging in a pico
 	              lt = l{"log_text"};
 		      l.delete(["log_text"])
 		       .put(["log_items"], lt.split(re/\n/))
-		       .put(["timestamp"], l{"created"})
                     })
       	       ;
       logs
