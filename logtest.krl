@@ -47,4 +47,7 @@ Test the logging feature
     always {
       log "Log 2 ran as well"
     }
+  }
+
+
 }
