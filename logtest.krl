@@ -32,7 +32,7 @@ Test the logging feature
     }
     noop();
     always {
-      log ">> Here's a again >> " + a.encode;
+      log ">> Here's a again >> " + a.encode();
       log a;
     }
   
