@@ -41,7 +41,7 @@ Test the logging feature
   rule make_log_2 {
     select when test log_a log re/true/
     pre {
-      "a value to log".klog(">> Another value >> ");
+      x = "a value to log".klog(">> Another value >> ");
     }
     send_directive("log2")
     always {
