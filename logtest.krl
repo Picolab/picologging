@@ -30,7 +30,7 @@ Test the logging feature
 	]
       }.klog(">> value for a >> ");
     }
-    noop();
+    send_directive("log1");
     always {
       log ">> Here's a again >> " + a.encode();
       log a;
@@ -38,7 +38,7 @@ Test the logging feature
   
   }
 
-  rule make_log_2
+  rule make_log_2 {
     select when test log_a log re/true/
     pre {
       "a value to log".klog(">> Another value >> ");
