@@ -35,6 +35,7 @@ Set up logging in a pico
        // leci  = ent:logging_eci.isnull()
        //      || not pci:logging_enabled(meta:eci()) => pci:set_logging(meta:eci())
        // 	                                           | ent:logging_eci;
+      clear_flag = pci:clear_logging(meta:eci());
       leci = pci:set_logging(meta:eci());
       x = pci:flush_logs(leci);
     }
