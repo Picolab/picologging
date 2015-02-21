@@ -32,10 +32,11 @@ Set up logging in a pico
   rule start_logging {
     select when cloudos logging_reset
     pre {
-      leci  = ent:logging_eci.isnull()
-           || not pci:logging_enabled(meta:eci()) => pci:set_logging(meta:eci())
-	                                           | ent:logging_eci;
-      x = pci:flush_logs(leci)
+       // leci  = ent:logging_eci.isnull()
+       //      || not pci:logging_enabled(meta:eci()) => pci:set_logging(meta:eci())
+       // 	                                           | ent:logging_eci;
+      leci = pci:set_logging(meta:eci());
+      x = pci:flush_logs(leci);
     }
     noop();
     always {
