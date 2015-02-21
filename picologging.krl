@@ -35,11 +35,11 @@ Set up logging in a pico
       leci  = ent:logging_eci.isnull()
            || not pci:logging_enabled(meta:eci()) => pci:set_logging(meta:eci())
 	                                           | ent:logging_eci;
-      x = pci:flush_logs(leci).klog(">> return from flush >>");
+      x = pci:flush_logs(leci)
     }
     noop();
     always {
-      set ent:logging_eci leci
+      set ent:logging_eci leci.klog(">> using logging ECI ->> ");
     }
   
   }
