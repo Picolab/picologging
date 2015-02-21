@@ -17,7 +17,7 @@ Set up logging in a pico
   global {
 
     getLogs = function() {
-      logs = pci:get_logs(ent:logging_eci)
+      logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "))
                .map(function(l){
 	              lt = l{"log_text"};
 		      l.delete(["log_text"])
@@ -39,7 +39,7 @@ Set up logging in a pico
     }
     noop();
     always {
-      set ent:logging_eci leci.klog(">> using logging ECI ->> ");
+      set ent:logging_eci leci.klog(">> storing logging ECI ->> ");
     }
   
   }
