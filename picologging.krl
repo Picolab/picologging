@@ -20,8 +20,10 @@ Set up logging in a pico
       logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "))
                .map(function(l){
 	              lt = l{"log_text"};
+		      eid = l{"eid"};
 		      l.delete(["log_text"])
 		       .put(["log_items"], lt.split(re/\n/))
+		       			     .filter(function(ln){ln.match("re/^\d+\s+#{eid}/".as("regexp")})
                     })
       	       ;
       logs
