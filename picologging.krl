@@ -23,8 +23,8 @@ Set up logging in a pico
     }
 
     loggingStatus = function() {
-      status = (pci:logging_enabled(meta:eci()) == 1).klog(">> logging status >>");
-      status
+      status = pci:logging_enabled(meta:eci()).klog(">> raw status >>");
+      status => "true" | "false"
     }
     
   }
