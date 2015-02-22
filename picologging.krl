@@ -23,7 +23,7 @@ Set up logging in a pico
 		      eid = l{"eid"};
 		      l.delete(["log_text"])
 		       .put(["log_items"], lt.split(re/\n/))
-		       			     .filter(function(ln){ln.match(re/^\d+\s+/)})
+		       			     .filter(function(ln){ln.klog(">> this is the line >> ").match(re/^\d+\s+/)})
                     })
       	       ;
       logs
