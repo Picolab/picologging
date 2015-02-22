@@ -24,7 +24,7 @@ Set up logging in a pico
 
     loggingStatus = function() {
       status = pci:logging_enabled(meta:eci());
-      status
+      status == 1 => true | false 
     }
     
   }
