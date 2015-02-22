@@ -10,7 +10,7 @@ Set up logging in a pico
     use module b16x24 alias system_credentials
 
     sharing on
-    provides getLogs loggingStatus
+    provides getLogs, loggingStatus
      
   }
 
