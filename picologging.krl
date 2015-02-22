@@ -17,13 +17,12 @@ Set up logging in a pico
   global {
 
     getLogs = function() {
-      logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "))
-	     ;
+      logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "));
       logs
     }
 
     loggingStatus = function() {
-      status = pci:logging_enabled(meta:eci()).klog(">> raw status >>");
+      status = pci:logging_enabled(meta:eci());
       status => "true" | "false"
     }
     
@@ -33,7 +32,7 @@ Set up logging in a pico
     select when cloudos logging_reset
              or cloudos logging_on
     pre {
-      clear_flag = pci:clear_logging(meta:eci());
+      clear_flag = pci:clear_logging(meta:eci()); // reset it if already set
       leci = pci:set_logging(meta:eci());
       x = pci:flush_logs(leci);
     }
