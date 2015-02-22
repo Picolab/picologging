@@ -5,7 +5,7 @@ ruleset logtest {
 Test the logging feature
 >>
     author "PJW"
-    logging off
+    logging on
 
     sharing on
     provides getLogs

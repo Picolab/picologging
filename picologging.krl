@@ -10,7 +10,7 @@ Set up logging in a pico
     use module b16x24 alias system_credentials
 
     sharing on
-    provides getLogs
+    provides getLogs loggingStatus
      
   }
 
@@ -18,26 +18,21 @@ Set up logging in a pico
 
     getLogs = function() {
       logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "))
-                // .map(function(l){
-	        //        lt = l{"log_text"};
-	        // 	      eid = l{"eid"};
-	        // 	      l.delete(["log_text"])
-	        // 	       .put(["log_items"], lt.split(re/\n/)
-	        // 	       			     .filter(function(ln){ln.match(re/^\d+\s+/)})
-	        // 		   )
-                //      })
-      	       ;
+	     ;
       logs
+    }
+
+    loggingStatus = function() {
+      status = pci:logging_enabled(meta:eci());
+      status
     }
     
   }
 
   rule start_logging {
     select when cloudos logging_reset
+             or cloudos logging_on
     pre {
-       // leci  = ent:logging_eci.isnull()
-       //      || not pci:logging_enabled(meta:eci()) => pci:set_logging(meta:eci())
-       // 	                                           | ent:logging_eci;
       clear_flag = pci:clear_logging(meta:eci());
       leci = pci:set_logging(meta:eci());
       x = pci:flush_logs(leci);
@@ -46,6 +41,20 @@ Set up logging in a pico
     always {
       set ent:logging_eci leci.klog(">> storing logging ECI ->> ");
     }
-  
   }
+
+  rule clear_logging {
+    select when cloudos logging_off
+    pre {
+      clear_flag = pci:clear_logging(meta:eci());
+      x = pci:flush_logs(leci);
+    }
+    noop();
+    always {
+      clear ent:logging_eci;
+    }
+  }
+
+
+
 }
