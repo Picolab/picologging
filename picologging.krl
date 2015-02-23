@@ -30,7 +30,7 @@ Set up logging in a pico
 
   rule start_logging {
     select when picolog reset
-             or picolog on
+             or picolog active
     pre {
       clear_flag = pci:clear_logging(meta:eci()); // reset it if already set
       leci = pci:set_logging(meta:eci());
@@ -43,7 +43,7 @@ Set up logging in a pico
   }
 
   rule stop_logging {
-    select when picolog off
+    select when picolog inactive
     pre {
       clear_flag = pci:clear_logging(meta:eci());
       x = pci:flush_logs(ent:logging_eci);
