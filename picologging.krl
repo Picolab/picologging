@@ -29,8 +29,8 @@ Set up logging in a pico
   }
 
   rule start_logging {
-    select when cloudos logging_reset
-             or cloudos logging_on
+    select when logging reset
+             or logging on
     pre {
       clear_flag = pci:clear_logging(meta:eci()); // reset it if already set
       leci = pci:set_logging(meta:eci());
@@ -42,11 +42,23 @@ Set up logging in a pico
     }
   }
 
-  rule clear_logging {
-    select when cloudos logging_off
+  rule stop_logging {
+    select when logging off
     pre {
       clear_flag = pci:clear_logging(meta:eci());
-      x = pci:flush_logs(leci);
+      x = pci:flush_logs(ent:logging_eci);
+    }
+    noop();
+    always {
+      clear ent:logging_eci;
+    }
+  }
+
+  rule clear_logs {
+    select when logging clear
+    pre {
+      clear_flag = pci:clear_logging(meta:eci());
+      x = pci:flush_logs(ent:logging_eci);
     }
     noop();
     always {
