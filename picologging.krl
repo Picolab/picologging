@@ -54,8 +54,8 @@ Set up logging in a pico
     }
   }
 
-  rule clear_logs {
-    select when logging clear
+  rule flush_logs {
+    select when logging flush
     pre {
       x = pci:flush_logs(ent:logging_eci);
     }

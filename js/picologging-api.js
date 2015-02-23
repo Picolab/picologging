@@ -75,9 +75,9 @@
             return CloudOS.raiseEvent("logging", "off", json, {}, cb, {"eci": channel});
         },
 
-        clear: function(channel, json, cb)
+        flush: function(channel, json, cb)
         {
-            return CloudOS.raiseEvent("logging", "clear", json, {}, cb, {"eci": channel});
+            return CloudOS.raiseEvent("logging", "flush", json, {}, cb, {"eci": channel});
         }
 
     };
