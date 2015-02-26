@@ -65,19 +65,20 @@
 
         reset: function(channel, json, cb)
         {
-            return CloudOS.raiseEvent("logging", "reset", json, {}, cb, {"eci": channel});
+	    json = json || {};
+            return CloudOS.raiseEvent("picolog", "reset", json, {}, cb, {"eci": channel});
         },
 
-	on: this.reset,
+	active: this.reset,
 	
-        off: function(channel, json, cb)
+        inactive: function(channel, json, cb)
         {
-            return CloudOS.raiseEvent("logging", "off", json, {}, cb, {"eci": channel});
+            return CloudOS.raiseEvent("picolog", "inactive", json, {}, cb, {"eci": channel});
         },
 
         flush: function(channel, json, cb)
         {
-            return CloudOS.raiseEvent("logging", "flush", json, {}, cb, {"eci": channel});
+            return CloudOS.raiseEvent("picolog", "flush", json, {}, cb, {"eci": channel});
         }
 
     };
