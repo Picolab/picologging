@@ -8,12 +8,24 @@ Test the logging feature
     logging on
 
     sharing on
-    provides getLogs
+    provides logTest
      
   }
 
   global {
 
+    logTest = function() {
+      a = {
+        "foo": 1,
+	"bar": [
+	  {"flip": "dog",
+	   "flop": "fish"
+	  },
+	  20
+	]
+      }.klog(">> value for a >> ");
+      a       
+    }
     
   }
 
