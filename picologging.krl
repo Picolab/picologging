@@ -17,9 +17,9 @@ Set up logging in a pico
   global {
 
     getLogs = function(eids) { // takes an optianal array of eids to return a filtered list of logs matching the provided eids
-      ids = ( eids.typeof() eq "array" ) => eids | eids.split(re/;/); 
+      ids = ( eids.isnull() || eids.typeof() eq "array" ) => eids | eids.split(re/;/); 
       logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "));
-      return = ids.isnull()  => logs | logs.filter( function (log){ ids.index(log{"eid"}) eq -1 ; });
+      return = ids.isnull()  => logs | logs.filter( function (log){ (ids.index(log{"eid"}) == -1) ; });
       return;
     }
 
