@@ -27,7 +27,11 @@ Set up logging in a pico
       ids = ( eids.isnull() || eids.typeof() eq "array" ) => eids | eids.split(re/;/); 
       logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "));
       return = ids.isnull()  => logs | logs.filter( function (log){ (ids.index(log{"eid"}) != -1) ; });
-      ids;
+      { 'eids': eids,
+        'ids': ids,
+       'logs':logs,
+       'return': reture
+      }
     }
 
     loggingStatus = function() {
