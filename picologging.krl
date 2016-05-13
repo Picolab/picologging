@@ -9,8 +9,8 @@ Set up logging in a pico
 
     use module b16x24 alias system_credentials
 
+    provides getLogs, loggingStatus, getLog
     sharing on
-    provides getLogs, loggingStatus
      
   }
 
@@ -23,12 +23,13 @@ Set up logging in a pico
       return;
     }
     // function for testing while keeping a working function
-    getLogsTwo = function(eids) { // takes an optianal array of eids to return a filtered list of logs matching the provided eids
+    getLog = function(eids) { // takes an optianal array of eids to return a filtered list of logs matching the provided eids
       ids = ( eids.isnull() || eids.typeof() eq "array" ) => eids | eids.split(re/;/); 
       logs = pci:get_logs(ent:logging_eci.klog(">> using logging ECI ->> "));
       return = ids.isnull()  => logs | logs.filter( function (log){ (ids.index(log{"eid"}) != -1) ; });
       ids;
     }
+
     loggingStatus = function() {
       status = pci:logging_enabled(meta:eci());
       status => "true" | "false"
