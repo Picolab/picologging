@@ -30,7 +30,7 @@ Set up logging in a pico
       { 'eids': eids,
         'ids': ids,
        'logs':logs,
-       'return': reture
+       'return': return
       }
     }
 
